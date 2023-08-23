@@ -41,10 +41,10 @@ const App = () => {
         </div>
         <div className="col-md-9">
           <br /><br />
-          {loading && <p>Loading...</p>}
-          {error && <p>Error fetching data.</p>}
+          {loading && <p>...Loading...</p>}
+          {error && <p>...Error fetching data...</p>}
           {!loading && !selectedPokemon && (
-            <p className="d-flex flex-column align-items-center text-center">Select a Pokemon from the list</p>
+            <p className="d-flex flex-column align-items-center text-center">...Select a Pokemon from the list...</p>
           )}
           {!loading && selectedPokemon && (
             <PokemonDetails pokemon={selectedPokemon} />
