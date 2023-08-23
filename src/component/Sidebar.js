@@ -7,6 +7,7 @@ const Sidebar = ({ pokemonList, onItemClick, activePokemon }) => {
       <ul className="list-group">
         {pokemonList.map(pokemon => (
           <li
+            style={{cursor:'pointer'}}
             key={pokemon.name}
             className={`list-group-item ${activePokemon === pokemon ? 'active' : ''}`}
             onClick={() => onItemClick(pokemon)}
