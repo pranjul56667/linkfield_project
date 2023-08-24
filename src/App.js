@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Sidebar from './component/Sidebar';
 import PokemonDetails from './component/PokemonDetails';
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -28,30 +30,42 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-3">
-          <br />
-          <br />
-          <Sidebar
-            pokemonList={pokemonList}
-            onItemClick={handleItemClick}
-            activePokemon={selectedPokemon}
-          />
-        </div>
-        <div className="col-md-9">
-          <br /><br />
-          {loading && <p>...Loading...</p>}
-          {error && <p>...Error fetching data...</p>}
-          {!loading && !selectedPokemon && (
-            <p className="d-flex flex-column align-items-center text-center">...Select a Pokemon from the list...</p>
-          )}
-          {!loading && selectedPokemon && (
-            <PokemonDetails pokemon={selectedPokemon} />
-          )}
-        </div>
-      </div>
-    </div>
+    <>
+      <Container>
+        <Row>
+          <Col md={3}>
+            <br /><br />
+            <Sidebar pokemonList={pokemonList} onItemClick={handleItemClick} activePokemon={selectedPokemon}/>
+          </Col>
+          <Col md={9}>
+            <br /><br />
+            {loading && <div>
+              <Button variant="primary" disabled>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                  Loading...
+                </Button>
+              </div>
+            }
+            {error && <p>...Error fetching data...</p>}
+            {!loading && !selectedPokemon && (
+              <p className="d-flex flex-column align-items-center text-center">...Select a Pokemon from the list...</p>
+              )
+            }
+            {!loading && selectedPokemon && (
+              <PokemonDetails pokemon={selectedPokemon} />
+              )
+            }
+          </Col>
+        </Row>
+      </Container>    
+    </>    
   );
 };
+
 export default App;

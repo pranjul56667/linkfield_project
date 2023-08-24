@@ -1,22 +1,26 @@
 import React from 'react';
+import { ListGroup } from 'react-bootstrap';
 import './Sidebar.css';
 
 const Sidebar = ({ pokemonList, onItemClick, activePokemon }) => {
   return (
-    <div className="sidebar">
-      <ul className="list-group">
-        {pokemonList.map(pokemon => (
-          <li
-            style={{cursor:'pointer'}}
-            key={pokemon.name}
-            className={`list-group-item ${activePokemon === pokemon ? 'active' : ''}`}
-            onClick={() => onItemClick(pokemon)}
-          >
-            {pokemon.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="sidebar">
+        <ListGroup as="ol" numbered >
+          {pokemonList.map(pokemon => (
+            <ListGroup.Item
+              key={pokemon.name}
+              action
+              active={activePokemon === pokemon}
+              onClick={() => onItemClick(pokemon)}
+              variant="success"
+            >
+              {pokemon.name}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
+    </>
   );
 };
 

@@ -1,5 +1,15 @@
+*{
+  background-color: whitesmoke;
+}
+
 .sidebar {
-    max-height: 80vh;
-    overflow-y: auto;
-  }
+  max-height: 80vh;
+  overflow-y: auto;
+   
+}
   
+.list-group-item.active {
+background-color: yellow !important;
+  border-color: yellow !important;
+  color: black !important;
+}
